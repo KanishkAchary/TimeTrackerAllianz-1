@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="content">
+    <div class="row">
+      <div>
+        <label for="userEmail" style="padding-right: 10px;">Search user Data</label>
+        <input style="padding-left: 10px;width: 300px;" name="userEmail" type="email" [(ngModel)]="email" placeholder="Enter valid email address"
+          (keyup.enter)="getRecords()">
+        <button style="margin:10px;" type="button" class="btn btn-primary pull-right" data-toggle="modal" (click)="newTimeTrack()"
+          data-target="#myModal">Timetracker</button>
+
+        <span *ngIf="validateMail(email)" style="color: red">
+          <br>Please enter valid mail address</span>
+      </div>
+
+
+    </div>
+    <div class="row">
+      <ag-grid-angular style="width: 100%; height: 300px;" class="ag-theme-balham" pagination [rowData]="rowData" [columnDefs]="columnDefs"
+        [gridOptions]="gridOptions" (gridReady)="onReady($event)">
+      </ag-grid-angular>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLabel">Time Tracker:Record time track</h3>
+
+        </div>
+        <div class="modal-body">
+
+          <input type="email" class="form-control" [(ngModel)]="userData.email" placeholder="Enter valid email adddress">
+          <span *ngIf="validateMail(userData.email) " style="color: red">Please enter valid email adddress</span>
+          <br>
+          <label for="in-time">In Time</label>
+          <input class="form-control" placeholder="dd.MM.yy hh:mm" type="datetime" id="in-time" name="in-time" [(ngModel)]="userData.start" min="2018-06-07 00:00"
+            max="2018-06-07 00:00" />
+          <label for="out-time">Out Time</label>
+          <input class="form-control" placeholder="dd.MM.yy hh:mm" type="datetime" id="out-time" name="out-time" [(ngModel)]="userData.end" min="2018-06-07 00:00"
+            max="2018-06-07 00:00" />
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveTimeTrack()">Save</button>
+
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
