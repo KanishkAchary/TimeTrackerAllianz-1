@@ -11,4 +11,4 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - mvn clean install
 - docker-compose up
 
-Then navigate to docker url with port 8888 in browser.
+Then navigate to docker url with port 8888 in browser. Link of URL : http://192.168.99.100:8888/
